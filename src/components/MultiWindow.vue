@@ -103,7 +103,7 @@ function getWindowID() {
     .filter((key) => key.startsWith('window-'))
     .map((key) => parseInt(key.replace('window-', '')))
     .sort((a, b) => a - b);
-  return existingScreens.at(-1) + 1 || 1;
+  return existingScreens.splice(-1)[0] + 1 || 1;
 }
 
 function getNumberOfWindows() {
