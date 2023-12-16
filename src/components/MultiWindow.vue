@@ -68,16 +68,14 @@ const windowInfo = ref({
   correctLocation: false,
 });
 
-onBeforeMount(() => {
-  windowInfo.value.width = window.screen.availWidth;
-  windowInfo.value.height = window.screen.availHeight;
+onMounted(() => {
+  // initialize
   windowInfo.value.id = "window-" + getWindowID();
   setLocalStorage()
   initCamera()
-});
 
-onMounted(() => {
-  timerID = setInterval(update, 10);
+  // start updating
+  timerID = setInterval(update, 100);
 });
 
 onBeforeUnmount(() => {
@@ -119,8 +117,8 @@ function update() {
   }
 
   setScreenDetails()
-  setLocalStorage()
   checkIfCorrect()
+  setLocalStorage()
   allCorrect.value = checkIfAllCorrect()
 }
 
